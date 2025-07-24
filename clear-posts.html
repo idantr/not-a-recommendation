@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Blog Posts - זו לא המלצה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #c82333;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>נקה פוסטים קיימים</h1>
+        <div class="info">
+            <p>כלי זה ינקה את כל הפוסטים הקיימים מהאחסון המקומי של הדפדפן.</p>
+            <p>השתמש בו כדי להתחיל עם בלוג נקי ללא פוסטים ברירת מחדל.</p>
+        </div>
+        
+        <button onclick="clearPosts()">נקה את כל הפוסטים</button>
+        <button onclick="clearAll()">נקה הכל (פוסטים + קטגוריות)</button>
+        
+        <div id="result"></div>
+        
+        <div style="margin-top: 30px;">
+            <p><strong>הוראות:</strong></p>
+            <ol style="text-align: right;">
+                <li>לחץ על "נקה את כל הפוסטים" כדי למחוק רק פוסטים</li>
+                <li>לחץ על "נקה הכל" כדי למחוק גם פוסטים וגם קטגוריות</li>
+                <li>רענן את האתר שלך כדי לראות את השינויים</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function clearPosts() {
+            localStorage.removeItem('blogPosts');
+            document.getElementById('result').innerHTML = '<div class="success">✅ כל הפוסטים נמחקו בהצלחה!</div>';
+        }
+        
+        function clearAll() {
+            localStorage.removeItem('blogPosts');
+            localStorage.removeItem('categories');
+            localStorage.removeItem('isAdmin');
+            document.getElementById('result').innerHTML = '<div class="success">✅ כל הנתונים נמחקו בהצלחה! (פוסטים, קטגוריות, והרשאות מנהל)</div>';
+        }
+    </script>
+</body>
+</html>
